@@ -10,7 +10,7 @@ import {useSpring, animated} from 'react-spring'
 const Layout = ({location, children}) => {
 
     const slide = useSpring({
-        from: {transform: `translate3d(150%,0,0)`},
+        from: {transform: `translate3d(-100%,0,0)`},
         transform: `translate3d(0,0,0)`})
 
     return (

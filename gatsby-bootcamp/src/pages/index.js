@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import { animated, useSpring, config } from 'react-spring'
 import { Link } from 'gatsby'
-import { Waypoint } from 'react-waypoint'
 import Layout from '../components/layout'
 import indexStyles from './index.module.scss'
 
