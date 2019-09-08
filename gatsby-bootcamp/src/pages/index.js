@@ -1,14 +1,39 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { animated, useSpring, config } from 'react-spring'
 import { Link } from 'gatsby'
+import { Waypoint } from 'react-waypoint'
 import Layout from '../components/layout'
+import indexStyles from './index.module.scss'
 
-const IndexPage = () => {
+const IndexPage = ({location}) => {
+
+    const [scrolling, toggle] = useState(false);
+
+    const animation = useSpring({
+        opacity: scrolling ? 1 : 0,
+        transform: scrolling ? `translate3d(0,0,0)` : `translate3d(50%,0,0)`,
+    })
+
     return (
         <Layout>
+            <Waypoint 
+            
+            debug={true}
+            onEnter={()=> toggle(false)}
+            onLeave={()=> toggle(true)}/>  
+        <div>
+        <div className={indexStyles.mainContent} >      
             <h1>Hello</h1>
-        <h2>I am JR. A full stack web developer.</h2>
-        <h2>I work with Python and a couple of JS frameworks</h2>
-        <p>Need a developer? <Link to="/contact">Contact Me</Link> </p>
+        <   h2>I am JR. A full stack web developer.</h2>
+            <h2>I work with Python and a couple of JS frameworks</h2>
+            <p>Need a developer? <Link to="/contact">Contact Me</Link> </p>
+        </div>
+        {/* <animated.div style={animation}>
+            <h1>I also Play BASS.</h1>
+            <h2>Need a practice routine tool?</h2>
+            <p>I have one <Link to="contact">HERE</Link></p>
+        </animated.div> */}
+        </div>
         </Layout>
     )
 }
