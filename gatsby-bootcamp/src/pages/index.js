@@ -11,17 +11,12 @@ const IndexPage = ({location}) => {
 
     const animation = useSpring({
         opacity: scrolling ? 1 : 0,
-        transform: scrolling ? `translate3d(0,0,0)` : `translate3d(50%,0,0)`,
+        transform: scrolling ? `translate3d(0,0,0)` : `translate3d(100%,0,0)`,
     })
 
     return (
         <Layout>
-            <Waypoint 
-            
-            debug={true}
-            onEnter={()=> toggle(false)}
-            onLeave={()=> toggle(true)}/>  
-        <div>
+        {/* <div> */}
         <div className={indexStyles.mainContent} >      
             <h1>Hello</h1>
         <   h2>I am JR. A full stack web developer.</h2>
@@ -33,7 +28,7 @@ const IndexPage = ({location}) => {
             <h2>Need a practice routine tool?</h2>
             <p>I have one <Link to="contact">HERE</Link></p>
         </animated.div> */}
-        </div>
+        {/* </div> */}
         </Layout>
     )
 }
