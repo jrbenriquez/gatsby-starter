@@ -67,7 +67,7 @@ const IndexPage = ({location}) => {
             }}>
             <h1>I also Play BASS.</h1>
             <h2>Need a practice routine tool?</h2>
-            <p>I am preparing one here! <a href="#">SOON!</a></p>
+            <p>I am preparing one here! <a href="/">SOON!</a></p>
         </animated.div>
         </div>
         </Layout>
