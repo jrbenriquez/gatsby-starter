@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { animated, useSpring, config } from 'react-spring'
+import { Waypoint } from 'react-waypoint'
 import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import indexStyles from './index.module.scss'
@@ -8,27 +9,55 @@ const IndexPage = ({location}) => {
 
     const [scrolling, toggle] = useState(false);
 
-    const animation = useSpring({
-        opacity: scrolling ? 1 : 0,
-        transform: scrolling ? `translate3d(0,0,0)` : `translate3d(100%,0,0)`,
+    const {disappear, appear, y} = useSpring({
+        disappear: scrolling ? 0 : 1,
+        appear: scrolling ? 1 : 0,
+        y: scrolling ? 40: 0,
     })
-
-    return (
+    return (<div>
+        <animated.img src={'img/scrolldown.gif'} className={indexStyles.scroller} style={{
+            transform: y.interpolate(y => `translate3d(0,${y*2}%,0)`),
+            opacity: disappear.interpolate(disappear => `${disappear}`),
+            config: config.molasses
+        }}/>
         <Layout>
-        {/* <div> */}
-        <div className={indexStyles.mainContent} >      
+        <div className={indexStyles.scrollableContent}>
+        <Waypoint
+            // debug={true}
+            onLeave={() => {
+                toggle(true)
+            }
+
+            }/>
+        <animated.div className={indexStyles.mainContent} style={
+            {
+                transform: y.interpolate(y => `translate3d(0,${y*-1}%,0)`),
+                opacity: disappear.interpolate(disappear => `${disappear}`),
+                config: config.molasses
+            }
+        }>      
             <h1>Hello</h1>
             <h2>I am JR. A full stack web developer.</h2>
             <h2>I work with Python and a couple of JS frameworks</h2>
             <p>Need a developer? <Link to="/contact">Contact Me</Link> </p>
-        </div>
-        {/* <animated.div style={animation}>
+            <Waypoint
+            // debug={true}
+            onEnter={() => {
+                toggle(false)
+            }}/>
+        </animated.div>
+        <animated.div style={{
+                transform: y.interpolate(y => `translate3d(0,${(y+10)*-3}%,0)`),
+                opacity: appear.interpolate(appear => `${appear}`),
+                config: config.stiff
+            }}>
             <h1>I also Play BASS.</h1>
             <h2>Need a practice routine tool?</h2>
-            <p>I have one <Link to="contact">HERE</Link></p>
-        </animated.div> */}
-        {/* </div> */}
+            <p>I am preparing one here! <Link to="#">SOON!</Link></p>
+        </animated.div>
+        </div>
         </Layout>
+        </div>
     )
 }
 

@@ -1,0 +1,17 @@
+.scrollable-content {
+    height: 60vh;
+    overflow: scroll;
+}
+
+.main-content {
+    height: 50vh;
+}
+
+.scroller {
+    position: absolute;
+    right: 0;
+    top: 0%;
+    z-index: 999;
+    width: 20vh;
+    height: auto;
+}
