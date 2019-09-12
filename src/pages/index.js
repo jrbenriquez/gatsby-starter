@@ -12,7 +12,7 @@ const IndexPage = ({location}) => {
     const {disappear, appear, y} = useSpring({
         disappear: scrolling ? 0 : 1,
         appear: scrolling ? 1 : 0,
-        y: scrolling ? 40: 0,
+        y: scrolling ? 30: 0,
     })
     return (<div>
         <animated.img src={'img/scrolldown.gif'} className={indexStyles.scroller} style={{
@@ -39,15 +39,16 @@ const IndexPage = ({location}) => {
             <h1>Hello</h1>
             <h2>I am JR. A full stack web developer.</h2>
             <h2>I work with Python and a couple of JS frameworks</h2>
-            <p>Need a developer? <Link to="/contact">Contact Me</Link> </p>
             <Waypoint
             // debug={true}
             onEnter={() => {
                 toggle(false)
             }}/>
+            <p>Need a developer? <Link to="/contact">Contact Me</Link> </p>
+            
         </animated.div>
         <animated.div style={{
-                transform: y.interpolate(y => `translate3d(0,${(y+10)*-3}%,0)`),
+                transform: y.interpolate(y => `translate3d(0,${(y+10)*-4}%,0)`),
                 opacity: appear.interpolate(appear => `${appear}`),
                 config: config.stiff
             }}>
