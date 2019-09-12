@@ -12,7 +12,7 @@ const IndexPage = ({location}) => {
     const {disappear, appear, y} = useSpring({
         disappear: scrolling ? 0 : 1,
         appear: scrolling ? 1 : 0,
-        y: scrolling ? 30: 0,
+        y: scrolling ? 10: 0,
     })
     return (<div>
         <animated.img src={'img/scrolldown.gif'} className={indexStyles.scroller} style={{
@@ -26,17 +26,30 @@ const IndexPage = ({location}) => {
             // debug={true}
             onLeave={() => {
                 toggle(true)
-            }
+            }}
+            onEnter={() => {
+                toggle(false)
+            }}
 
-            }/>
+            />
         <animated.div className={indexStyles.mainContent} style={
             {
-                transform: y.interpolate(y => `translate3d(0,${y*-1}%,0)`),
+                transform: y.interpolate(y => `translate3d(0,${y*-1.5}vh,0)`),
                 opacity: disappear.interpolate(disappear => `${disappear}`),
                 config: config.molasses
             }
         }>      
             <h1>Hello</h1>
+            <Waypoint
+            // debug={true}
+            onLeave={() => {
+                toggle(true)
+            }}
+            onEnter={() => {
+                toggle(false)
+            }}
+
+            />
             <h2>I am JR. A full stack web developer.</h2>
             <h2>I work with Python and a couple of JS frameworks</h2>
             <Waypoint
@@ -48,13 +61,13 @@ const IndexPage = ({location}) => {
             
         </animated.div>
         <animated.div style={{
-                transform: y.interpolate(y => `translate3d(0,${(y+10)*-4}%,0)`),
+                transform: y.interpolate(y => `translate3d(0,${(y)*-3.5}vh,0)`),
                 opacity: appear.interpolate(appear => `${appear}`),
                 config: config.stiff
             }}>
             <h1>I also Play BASS.</h1>
             <h2>Need a practice routine tool?</h2>
-            <p>I am preparing one here! <Link to="#">SOON!</Link></p>
+            <p>I am preparing one here! <a href="#">SOON!</a></p>
         </animated.div>
         </div>
         </Layout>
