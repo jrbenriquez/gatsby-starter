@@ -34,7 +34,7 @@ const IndexPage = ({location}) => {
             />
         <animated.div className={indexStyles.mainContent} style={
             {
-                transform: y.interpolate(y => `translate3d(0,${y*-1.5}vh,0)`),
+                // transform: y.interpolate(y => `translate3d(0,${y*-1.5}vh,0)`),
                 opacity: disappear.interpolate(disappear => `${disappear}`),
                 config: config.molasses
             }
@@ -61,9 +61,9 @@ const IndexPage = ({location}) => {
             
         </animated.div>
         <animated.div style={{
-                transform: y.interpolate(y => `translate3d(0,${(y)*-3.5}vh,0)`),
+                transform: y.interpolate(y => `translate3d(0,${(y)*-2}vh,0)`),
                 opacity: appear.interpolate(appear => `${appear}`),
-                config: config.stiff
+                config: config.molasses
             }}>
             <h1>I also Play BASS.</h1>
             <h2>Need a practice routine tool?</h2>
