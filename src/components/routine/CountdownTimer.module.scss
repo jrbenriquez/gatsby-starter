@@ -1,0 +1,14 @@
+.timer {
+    font-size: 5em;
+    min-height: 15vh;
+}
+
+.timer-wrapper {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.clickable:hover {
+    cursor: pointer;
+}

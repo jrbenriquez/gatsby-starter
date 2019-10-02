@@ -1,0 +1,7 @@
+const startTransitions = {
+    from: {opacity: 1},
+    enter: {opacity: 1},
+    leave: {opacity: 0}
+}
+
+export {startTransitions}

@@ -1,0 +1,17 @@
+.start-button {
+    font-size: 2em;
+}
+
+.start-button-wrapper {
+    align-self: flex-end;
+    padding-right: 5vw;
+}
+
+.start-button-wrapper:hover {
+    cursor: pointer;
+}
+
+.routine-wrapper {
+    display: flex;
+    flex-direction: column;
+}
