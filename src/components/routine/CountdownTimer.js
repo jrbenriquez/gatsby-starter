@@ -57,11 +57,11 @@ const CountdownTimer = (props) => {
                 {zeroPad(minutes)}:{zeroPad(seconds)}
             </div>
 
-            <div className={timerStyles.clickable} onClick={() => pauseTimer()} style={{marginLeft: '10vw'}}>
+            <div className={timerStyles.clickable} onClick={() => pauseTimer()} style={{marginLeft: '10vw', zIndex: '999'}}>
             <FontAwesomeIcon icon={ faPause }/> / <FontAwesomeIcon icon={ faPlay }/>
             </div>
 
-            <div className={timerStyles.clickable} onClick={() => resetTimer()} style={{marginLeft: '10vw'}}>
+            <div className={timerStyles.clickable} onClick={() => resetTimer()} style={{marginLeft: '10vw', zIndex: '999'}}>
             <FontAwesomeIcon icon={ faUndo }/>
             </div>
                 
@@ -90,9 +90,9 @@ const CountdownTimer = (props) => {
                 <div className={timerStyles.timer} >
                     {zeroPad(setMinutes)}:00
                 </div>
-                <div className={timerStyles.clickable} onClick={() => startTimer()} style={{marginLeft: '10vw'}}>
+                <div className={timerStyles.clickable} onClick={() => startTimer()} style={{marginLeft: '10vw', zIndex: '999'}}>
                 <FontAwesomeIcon icon={ faPlay }/> Start Practice
-            </div>
+                </div>
           </div>
         }
         <hr></hr>
