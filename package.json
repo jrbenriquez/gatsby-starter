@@ -13,6 +13,9 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-fontawesome": "^0.1.5",
     "gatsby": "^2.15.7",
     "gatsby-plugin-react-helmet": "^3.1.6",
     "gatsby-plugin-sass": "^2.1.13",
@@ -25,6 +28,7 @@
     "react-waypoint": "^9.0.2"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
     "prettier": "^1.18.2"
   },
   "repository": {
