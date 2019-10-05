@@ -6,6 +6,7 @@ import '../styles/index.scss'
 import LayoutStyles from './layout.module.scss'
 import { Helmet } from "react-helmet"
 import {useSpring, animated, config} from 'react-spring'
+import window from 'global'
 
 const Layout = ({location, children, headerClicked, setHeaderClicked}) => {
 
