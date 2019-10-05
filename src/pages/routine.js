@@ -85,7 +85,7 @@ function RoutinePage(myProps) {
 
     return (
         <Layout location={myProps.location} headerClicked={headerClicked} setHeaderClicked={setHeaderClicked}>
-            <div className={routineStyles.routineWrapper} style={fade}>
+            <animated.div className={routineStyles.routineWrapper} style={fade}>
                     <MainDiv 
                     started={started}
                     slideToSide={slideToSide}
@@ -120,7 +120,7 @@ function RoutinePage(myProps) {
                         </div>
                 )
                 }
-            </div>
+            </animated.div>
         </Layout>
     )
 }
