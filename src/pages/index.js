@@ -61,7 +61,7 @@ const IndexPage = ({location}) => {
             
         </animated.div>
         <animated.div style={{
-                transform: y.interpolate(y => `translate3d(0,${(y)*-2}vh,0)`),
+                transform: y.interpolate(y => `translate3d(0,${(y)*-3}vh,0)`),
                 opacity: appear.interpolate(appear => `${appear}`),
                 config: config.molasses
             }}>
