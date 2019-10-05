@@ -6,7 +6,6 @@ import '../styles/index.scss'
 import LayoutStyles from './layout.module.scss'
 import { Helmet } from "react-helmet"
 import {useSpring, animated, config} from 'react-spring'
-import window from 'global'
 
 const Layout = ({location, children, headerClicked, setHeaderClicked}) => {
 
@@ -26,7 +25,7 @@ const Layout = ({location, children, headerClicked, setHeaderClicked}) => {
                 <title>John Rei Enriquez</title>
                 <link rel="canonical" href="http://jrbenriquez.com" />
             </Helmet>
-            <Header location={window.location.pathname} setClicked={setHeaderClicked} />
+            <Header location={location} setClicked={setHeaderClicked} />
             <animated.div className={LayoutStyles.content} style={slide}>
                     {children}
             </animated.div>

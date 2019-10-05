@@ -5,8 +5,7 @@ import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import indexStyles from './index.module.scss'
 
-const IndexPage = () => {
-
+const IndexPage = (props) => {
     const [scrolling, toggle] = useState(false);
     const [headerClicked, setHeaderClicked] = useState(false)
     const {disappear, appear, y} = useSpring({
@@ -24,7 +23,7 @@ const IndexPage = () => {
             opacity: disappear.interpolate(disappear => `${disappear}`),
             config: config.molasses
         }}/>
-        <Layout headerClicked={headerClicked} setHeaderClicked={setHeaderClicked}>
+        <Layout location={props.location} headerClicked={headerClicked} setHeaderClicked={setHeaderClicked}>
         <animated.div className={indexStyles.scrollableContent} style={fade}>
         <Waypoint
             // debug={true}
