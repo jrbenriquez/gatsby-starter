@@ -5,11 +5,11 @@ import routineStyles from "./routine.module.scss"
 import StartMenu from "../components/routine/StartMenu"
 import CountdownTimer from "../components/routine/CountdownTimer"
 import Layout from '../components/layout'
+import {OneHourBassPractice} from '../routines/flow'
 
 import {startTransitions} from '../springs/routine'
 
 const MainDiv = (props) => {
-
     const {slideToSide, started, opacity, setStart, mode} = props
     const greetingVisible = !started
     const readyToStart = useTransition(greetingVisible, null, startTransitions)
@@ -37,39 +37,75 @@ const MainDiv = (props) => {
     )
 }
 
-function RoutinePage(props) {
-
+function RoutinePage(myProps) {
+    const [headerClicked, setHeaderClicked] = useState(false)
     const [started, setStart] = useState(false);
-
+    const [currentMode, setMode] = useState('WARMUP');
+    const [routines, setRoutine] = useState([{
+        routine: 'WARMUP',
+        key: 0
+    }]);
     const {slideToSide, opacity} = useSpring({
         slideToSide: started ? 50 : 0,
         opacity: started ? 0 : 1
     })
 
-    let initialMode = 'WARMUP'
+    let modeKey = 0
+
+    function cycleMode(key) {
+        let nextModeKey = key+1
+        let max_mode_length = Object.keys(OneHourBassPractice.flow).length
+        if (key >= max_mode_length - 1) {
+            nextModeKey = 0
+        }
+        let nextMode = OneHourBassPractice.flow[nextModeKey]
+        setMode(nextMode)
+        return [{
+            routine: nextMode,
+            key: nextModeKey
+        }]
+    }
+
+    const switchModes = useTransition(routines, item => item.key , {
+        from: {opacity: 0, transform: 'translate3d(-20px,0,0)'},
+        enter: {opacity: 1, transform: 'translate3d(0,0,0)'},
+        leave: {opacity: 0, transform: 'translate3d(20px,0,0)'}
+    })
+
 
     return (
-        <Layout>
+        <Layout location={myProps.location} headerClicked={headerClicked} setHeaderClicked={setHeaderClicked}>
             <div className={routineStyles.routineWrapper}>
                     <MainDiv 
                     started={started}
                     slideToSide={slideToSide}
                     opacity={opacity}
                     setStart={setStart}
-                    mode={initialMode} />
-                { !!initialMode && started && initialMode === 'WARMUP' &&
-                    <div style={{position: 'absolute'}}>
-                    <div className={routineStyles.routineTitle} >
+                    mode={currentMode} />
+                { !!currentMode && started &&
+
+                switchModes.map(
+                    ({ item, props, key }) => 
+                        <div style={{position: 'absolute'}}>
+                            <animated.div style={props} key={key}>
+                            <div className={routineStyles.routineTitle} >
                     
-                        <div><h2>Warm Up</h2></div>
+                                <div><h2>{OneHourBassPractice[item.routine].title}</h2></div>
                      
-                    </div>
-                    <div className={routineStyles.routineSubTitle}>
-                    <h6>Loosen those finger muscles!</h6>
-                    
-                    </div>
-                    </div>
-            }
+                            </div>
+                            <div className={routineStyles.routineSubTitle}>
+                                <h6>{OneHourBassPractice[item.routine].subtext}</h6>  
+                            </div>
+                            <div className={routineStyles.buttonWrapper}>
+                                <div className={routineStyles.nextButton}>
+                                <button onClick={() => setRoutine(cycleMode(item.key)) }>Next</button>
+                                </div>
+                            </div>
+                            </animated.div>
+                            
+                        </div>
+                )
+                }
             </div>
         </Layout>
     )

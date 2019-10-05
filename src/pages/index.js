@@ -70,7 +70,7 @@ const IndexPage = (props) => {
             }}>
             <h1>I also Play BASS.</h1>
             <h2>Need a practice routine tool?</h2>
-            <p>I am preparing one here! <a href="/">SOON!</a></p>
+            <p><Link to="/routine">Click me!</Link></p>
         </animated.div>
         </animated.div>
         </Layout>

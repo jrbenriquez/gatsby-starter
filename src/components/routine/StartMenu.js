@@ -12,9 +12,9 @@ const StartMenu = (props) => {
                 
                         }}>
                             <h1>1 Hour</h1>
-                            <h1>Practice Routine</h1>
+                            <h1>Bass Practice Routine</h1>
                         </animated.div>
-                        <animated.div style={{opacity}}><hr></hr></animated.div>
+                        <animated.div style={{opacity}}><hr></hr> <h3>Improving this as time goes by.</h3> <h6>(i.e to include diagrams + chart guides)</h6></animated.div>
                         <animated.div className={routineStyles.startButtonWrapper} style={{
                             transform: slideToSide.interpolate(slideToSide => `translate3d(${(slideToSide*-1)*2}%,0,0)`),
                             opacity
