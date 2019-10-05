@@ -64,19 +64,21 @@ const IndexPage = (props) => {
             <p>Need a developer? <Link to="/contact">Contact Me</Link> </p>
             
         </animated.div>
-        <animated.div style={{
-                transform: y.interpolate(y => `translate3d(0,${(y)*-3}vh,0)`),
-                opacity: appear.interpolate(appear => `${appear}`),
-                config: config.molasses
-            }}>
-            <h1>I also Play BASS.</h1>
-            <h2>Need a practice routine tool?</h2>
-            <animated.div className={indexStyles.floatRight, indexStyles.clickable} style={{
-                right: appearingScale.interpolate(appearingScale => `${appearingScale}`)
-            }}>
-                <p><Link to="/routine">Go to Bass Shed</Link></p>
+        <animated.div style={fade}>
+            <animated.div style={{
+                    transform: y.interpolate(y => `translate3d(0,${(y)*-3}vh,0)`),
+                    opacity: appear.interpolate(appear => `${appear}`),
+                    config: config.molasses
+                }}>
+                <h1>I also Play BASS.</h1>
+                <h2>Need a practice routine tool?</h2>
+                <animated.div className={indexStyles.floatRight, indexStyles.clickable} style={{
+                    right: appearingScale.interpolate(appearingScale => `${appearingScale}`)
+                }}>
+                    <p><Link to="/routine">Go to Bass Shed</Link></p>
+                </animated.div>
             </animated.div>
-        </animated.div>
+            </animated.div>
         </animated.div>
         </Layout>
         </div>
