@@ -15,13 +15,13 @@ export const OneHourBassPractice = {
     ARPEGGIOS : {
         'key': 2,
         'timer': 5,
-        'subtext': 'Chord tones are your butter!',
+        'subtext': 'Chord tones are both your bread & butter!',
         'title': 'Arpeggios'
     },
     MUSIC_READING : {
         'key': 3,
         'timer': 10,
-        'subtext': 'Loosen those fingers',
+        'subtext': 'I know it sucks, but you HAVE to!',
         'title': 'Music Reading'
     },
     PLAYTHROUGH : {

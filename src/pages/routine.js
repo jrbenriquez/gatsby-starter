@@ -6,11 +6,13 @@ import StartMenu from "../components/routine/StartMenu"
 import CountdownTimer from "../components/routine/CountdownTimer"
 import Layout from '../components/layout'
 import {OneHourBassPractice} from '../routines/flow'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight,} from '@fortawesome/free-solid-svg-icons';
 
 import {startTransitions} from '../springs/routine'
 
 const MainDiv = (props) => {
-    const {slideToSide, started, opacity, setStart, mode} = props
+    const {slideToSide, started, opacity, setStart, mode, timerStarted, setTimer} = props
     const greetingVisible = !started
     const readyToStart = useTransition(greetingVisible, null, startTransitions)
     return (
@@ -30,7 +32,9 @@ const MainDiv = (props) => {
                     started={started}
                     slideToSide={slideToSide}
                     opacity={opacity}
-                    mode={mode} />
+                    mode={mode}
+                    timerStarted={timerStarted}
+                    setTimer={setTimer} />
                 )
             )}
         </div>
@@ -40,6 +44,7 @@ const MainDiv = (props) => {
 function RoutinePage(myProps) {
     const [headerClicked, setHeaderClicked] = useState(false)
     const [started, setStart] = useState(false);
+    const [timerStarted, setTimer] = useState(false);
     const [currentMode, setMode] = useState('WARMUP');
     const [routines, setRoutine] = useState([{
         routine: 'WARMUP',
@@ -64,6 +69,7 @@ function RoutinePage(myProps) {
         }
         let nextMode = OneHourBassPractice.flow[nextModeKey]
         setMode(nextMode)
+        setTimer(false)
         return [{
             routine: nextMode,
             key: nextModeKey
@@ -71,7 +77,7 @@ function RoutinePage(myProps) {
     }
 
     const switchModes = useTransition(routines, item => item.key , {
-        from: {opacity: 0, transform: 'translate3d(-20px,0,0)'},
+        from: {opacity: 0, transform: 'translate3d(-20px,0,0)',},
         enter: {opacity: 1, transform: 'translate3d(0,0,0)'},
         leave: {opacity: 0, transform: 'translate3d(20px,0,0)'}
     })
@@ -85,12 +91,15 @@ function RoutinePage(myProps) {
                     slideToSide={slideToSide}
                     opacity={opacity}
                     setStart={setStart}
-                    mode={currentMode} />
+                    mode={currentMode}
+                    timerStarted={timerStarted}
+                    setTimer={setTimer}
+                    />
                 { !!currentMode && started &&
 
                 switchModes.map(
                     ({ item, props, key }) => 
-                        <div style={{position: 'absolute'}}>
+                        <div style={{position: 'absolute'}} className={routineStyles.lowerDiv}>
                             <animated.div style={props} key={key}>
                             <div className={routineStyles.routineTitle} >
                     
@@ -102,7 +111,8 @@ function RoutinePage(myProps) {
                             </div>
                             <div className={routineStyles.buttonWrapper}>
                                 <div className={routineStyles.nextButton}>
-                                <button onClick={() => setRoutine(cycleMode(item.key)) }>Next</button>
+                                <button onClick={() => setRoutine(cycleMode(item.key)) }>Next&nbsp;
+                                <FontAwesomeIcon icon={ faArrowRight }/> </button>
                                 </div>
                             </div>
                             </animated.div>

@@ -14,11 +14,15 @@ const getNow = Date.now()
 
 
 const CountdownTimer = (props) => {
-    const {started, slideToSide, opacity, mode} = props
+    const {mode, timerStarted, setTimer} = props
 
-    const [timerStarted, setTimer] = useState(false);
-
-    const Completionist = () => <span>You are good to go!</span>;
+    const Completionist = ({setTimer}) => (
+        <div style={{display:'flex', justifyContent: 'space-evenly'}}>
+            <div>Exercise done!</div>
+            <div className={timerStyles.clickable} onClick={() => setTimer(false)} style={{zIndex: '999'}}>
+                <FontAwesomeIcon icon={ faUndo }/>
+            </div>
+        </div>)
     
     function startTimer(){
         setTimer(true)
@@ -47,8 +51,8 @@ const CountdownTimer = (props) => {
         }
 
         if (completed) {
-          // Render a completed state
-          return <Completionist />;
+          return <Completionist setTimer={setTimer} />
+          
         } else {
           // Render a countdown
           return (
@@ -57,11 +61,11 @@ const CountdownTimer = (props) => {
                 {zeroPad(minutes)}:{zeroPad(seconds)}
             </div>
 
-            <div className={timerStyles.clickable} onClick={() => pauseTimer()} style={{marginLeft: '10vw', zIndex: '999'}}>
+            <div className={timerStyles.clickable} onClick={() => pauseTimer()} style={{zIndex: '999'}}>
             <FontAwesomeIcon icon={ faPause }/> / <FontAwesomeIcon icon={ faPlay }/>
             </div>
 
-            <div className={timerStyles.clickable} onClick={() => resetTimer()} style={{marginLeft: '10vw', zIndex: '999'}}>
+            <div className={timerStyles.clickable} onClick={() => resetTimer()} style={{zIndex: '999'}}>
             <FontAwesomeIcon icon={ faUndo }/>
             </div>
                 
@@ -75,6 +79,9 @@ const CountdownTimer = (props) => {
         <animated.div style={{
             position: 'absolute'
             }}>
+        <div style={{
+            width: '90vw'
+        }}>
         {timerStarted &&
         <Countdown date={Date.now() + getMilliseconds(setMinutes)}
             renderer={renderer}
@@ -90,12 +97,13 @@ const CountdownTimer = (props) => {
                 <div className={timerStyles.timer} >
                     {zeroPad(setMinutes)}:00
                 </div>
-                <div className={timerStyles.clickable} onClick={() => startTimer()} style={{marginLeft: '10vw', zIndex: '999'}}>
+                <div className={timerStyles.clickable} onClick={() => startTimer()} style={{zIndex: '999'}}>
                 <FontAwesomeIcon icon={ faPlay }/> Start Practice
                 </div>
           </div>
         }
         <hr></hr>
+        </div>
         </animated.div>
     )};
 

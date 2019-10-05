@@ -18,7 +18,7 @@ const StartMenu = (props) => {
                         <animated.div className={routineStyles.startButtonWrapper} style={{
                             transform: slideToSide.interpolate(slideToSide => `translate3d(${(slideToSide*-1)*2}%,0,0)`),
                             opacity
-                        }}>
+                        }}><br></br>
                         <p className={routineStyles.startButton} onClick={() => setStart(true)}><u>START</u></p>
                         </animated.div>
                     </div>
