@@ -4,8 +4,4 @@ const startTransitions = {
     leave: {opacity: 0}
 }
 
-const timers = {
-    'WARMUP' : 5
-}
-
-export {startTransitions, timers}
+export {startTransitions}

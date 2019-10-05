@@ -7,7 +7,7 @@ import LayoutStyles from './layout.module.scss'
 import { Helmet } from "react-helmet"
 import {useSpring, animated, config} from 'react-spring'
 
-const Layout = ({location, children}) => {
+const Layout = ({location, children, headerClicked, setHeaderClicked}) => {
 
     const slide = useSpring({
         from: {transform: `translate3d(-50%,0,0)`, opacity: 0},
@@ -25,7 +25,7 @@ const Layout = ({location, children}) => {
                 <title>John Rei Enriquez</title>
                 <link rel="canonical" href="http://jrbenriquez.com" />
             </Helmet>
-            <Header />
+            <Header location={window.location.pathname} setClicked={setHeaderClicked} />
             <animated.div className={LayoutStyles.content} style={slide}>
                     {children}
             </animated.div>

@@ -57,7 +57,7 @@ function RoutinePage(props) {
                     opacity={opacity}
                     setStart={setStart}
                     mode={initialMode} />
-                { !!initialMode && started && initialMode == 'WARMUP' &&
+                { !!initialMode && started && initialMode === 'WARMUP' &&
                     <div style={{position: 'absolute'}}>
                     <div className={routineStyles.routineTitle} >
                     

@@ -5,14 +5,18 @@ import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import indexStyles from './index.module.scss'
 
-const IndexPage = ({location}) => {
+const IndexPage = () => {
 
     const [scrolling, toggle] = useState(false);
-
+    const [headerClicked, setHeaderClicked] = useState(false)
     const {disappear, appear, y} = useSpring({
         disappear: scrolling ? 0 : 1,
         appear: scrolling ? 1 : 0,
         y: scrolling ? 10: 0,
+    })
+
+    const fade = useSpring({
+        opacity: headerClicked ? 0 : 1
     })
     return (<div>
         <animated.img src={'img/scrolldown.gif'} className={indexStyles.scroller} style={{
@@ -20,8 +24,8 @@ const IndexPage = ({location}) => {
             opacity: disappear.interpolate(disappear => `${disappear}`),
             config: config.molasses
         }}/>
-        <Layout>
-        <div className={indexStyles.scrollableContent}>
+        <Layout headerClicked={headerClicked} setHeaderClicked={setHeaderClicked}>
+        <animated.div className={indexStyles.scrollableContent} style={fade}>
         <Waypoint
             // debug={true}
             onLeave={() => {
@@ -69,7 +73,7 @@ const IndexPage = ({location}) => {
             <h2>Need a practice routine tool?</h2>
             <p>I am preparing one here! <a href="/">SOON!</a></p>
         </animated.div>
-        </div>
+        </animated.div>
         </Layout>
         </div>
     )

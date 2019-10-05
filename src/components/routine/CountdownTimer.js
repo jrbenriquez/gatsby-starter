@@ -4,7 +4,7 @@ import {useSpring, animated} from 'react-spring'
 import timerStyles from './CountdownTimer.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPause, faPlay, faUndo } from '@fortawesome/free-solid-svg-icons';
-import {timers} from '../../springs/routine'
+import {getRoutineTimer} from '../../routines/flow'
 
 function getMilliseconds(minutes) {
     return minutes * 60000
@@ -27,7 +27,7 @@ const CountdownTimer = (props) => {
 
     let id = 0
     let paused = false
-    let setMinutes = timers[mode]
+    let setMinutes = getRoutineTimer('OneHourBassPractice')[mode]
     const renderer = ({ hours, minutes, seconds, completed, api }) => {
 
 
