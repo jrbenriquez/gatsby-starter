@@ -15,3 +15,12 @@
     width: 20vh;
     height: auto;
 }
+
+.float-right {
+    float:right
+}
+
+.clickable:hover {
+    cursor: pointer;
+    text-decoration-line: underline;
+}

@@ -8,10 +8,11 @@ import indexStyles from './index.module.scss'
 const IndexPage = (props) => {
     const [scrolling, toggle] = useState(false);
     const [headerClicked, setHeaderClicked] = useState(false)
-    const {disappear, appear, y} = useSpring({
+    const {disappear, appear, y, appearingScale} = useSpring({
         disappear: scrolling ? 0 : 1,
         appear: scrolling ? 1 : 0,
         y: scrolling ? 10: 0,
+        appearingScale: scrolling? 20 : 50
     })
 
     const fade = useSpring({
@@ -70,7 +71,11 @@ const IndexPage = (props) => {
             }}>
             <h1>I also Play BASS.</h1>
             <h2>Need a practice routine tool?</h2>
-            <p><Link to="/routine">Click me!</Link></p>
+            <animated.div className={indexStyles.floatRight, indexStyles.clickable} style={{
+                right: appearingScale.interpolate(appearingScale => `${appearingScale}`)
+            }}>
+                <p><Link to="/routine">Go to Bass Shed</Link></p>
+            </animated.div>
         </animated.div>
         </animated.div>
         </Layout>
