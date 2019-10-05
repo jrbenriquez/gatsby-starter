@@ -50,6 +50,10 @@ function RoutinePage(myProps) {
         opacity: started ? 0 : 1
     })
 
+    const fade = useSpring({
+        opacity: headerClicked ? 0 : 1
+    })
+
     let modeKey = 0
 
     function cycleMode(key) {
@@ -75,7 +79,7 @@ function RoutinePage(myProps) {
 
     return (
         <Layout location={myProps.location} headerClicked={headerClicked} setHeaderClicked={setHeaderClicked}>
-            <div className={routineStyles.routineWrapper}>
+            <div className={routineStyles.routineWrapper} style={fade}>
                     <MainDiv 
                     started={started}
                     slideToSide={slideToSide}
